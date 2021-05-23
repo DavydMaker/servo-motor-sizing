@@ -1,0 +1,8 @@
+Peso=10|Tipo de Engrenagem=70|Necessidade/Torque=100
+Aileron=1,23|Leme de Direção=2,4|Profundor=3,22|Flaps=1,56
+1,8|6,5|10
+2,3|53|10
+3,2|48|10
+4,8|35,7|10
+5,35|23,3|10
+6,4|12,4|10
