@@ -4,7 +4,7 @@
 """servo-motor-sizing.py: Script to assist in the dimensioning of servomotors in electrical design."""
 
 __author__ = "Davyd Maker"
-__version__ = "1.1"
+__version__ = "1.2"
 __email__ = "contato@davydmaker.com.br"
 
 def truncate(s, n):
@@ -15,7 +15,7 @@ def changePoint(s, decimal, thousand): return thousand.join(str(s).replace(thous
 
 def splitStrVal(arr): return list(map(lambda rlv: [rlv.split("=")[0], float(changePoint(rlv.split("=")[1], ",", "."))], arr.split("|")))
 
-listSv, listNcd, listRlv = [], [], []
+listSv, listSprf, listRlv = [], [], []
 
 confValores = open("./conf.txt", "r")
 for idxL, l in enumerate(confValores):
@@ -24,12 +24,12 @@ for idxL, l in enumerate(confValores):
 
     if "=" in l:
         l = l.split("|")
-        listNcd.append(splitStrVal(l[0])[0])
+        listSprf.append(splitStrVal(l[0])[0])
         listRlv.append(splitStrVal("|".join(l[1:])))
     else: listSv.append(list(map(float, [changePoint(tL, ",", ".") for tL in l.split("|")])))
 
 arq = open("./result.txt", "w+")
-for n, rList in zip(listNcd, listRlv):
+for n, rList in zip(listSprf, listRlv):
     for idxS, s in enumerate(listSv):
         for idxR, r in enumerate(rList):
             if r[0] == "Confiabilidade": tNota = s[3]
