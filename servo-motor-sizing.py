@@ -4,7 +4,7 @@
 """servo-motor-sizing.py: Script to assist in the dimensioning of servomotors in electrical design."""
 
 __author__ = "Davyd Maker"
-__version__ = "1.0"
+__version__ = "1.1"
 __email__ = "contato@davydmaker.com.br"
 
 def truncate(s, n):
@@ -22,19 +22,25 @@ for idxL, l in enumerate(confValores):
     l = l.strip()
     if l == "": pass
 
-    if idxL == 0: listRlv = splitStrVal(l)
-    elif idxL == 1: listNcd = splitStrVal(l)
+    if "=" in l:
+        l = l.split("|")
+        listNcd.append(splitStrVal(l[0])[0])
+        listRlv.append(splitStrVal("|".join(l[1:])))
     else: listSv.append(list(map(float, [changePoint(tL, ",", ".") for tL in l.split("|")])))
 
-for n in listNcd:
+arq = open("./result.txt", "w+")
+for n, rList in zip(listNcd, listRlv):
     for idxS, s in enumerate(listSv):
-        for r in listRlv:
-            if r[0] == "Tipo de Engrenagem": tNota = s[2]
+        for idxR, r in enumerate(rList):
+            if r[0] == "Confiabilidade": tNota = s[3]
+            elif r[0] == "Tipo de Engrenagem": tNota = s[2]
             elif r[0] == "Peso": tNota = -0.05 * s[1] + 10
             elif r[0] == "Necessidade/Torque": tNota = float(truncate(n[1]/s[0], 2)) * 10
 
-            print("[Servo Nº " + str(idxS+1) + " de Torque 4,8V (" + changePoint(s[0], ".", ",") + " N·cm) para " + n[0] + " de Tm " + str(n[1]) + " kg*cm]")
-            print("[" + r[0] + " - Relevância: " + str(r[1]) + "]")
-            print("Nota: " + changePoint(truncate(tNota, 2), ".", ","))
-            print("Total:", changePoint(truncate(float(tNota) * float(r[1]), 2), ".", ","))
-            print("\n")
+            arq.write("[Servo Nº " + str(idxS+1) + " de Torque 4,8V (" + changePoint(s[0], ".", ",") + " N·cm) para " + n[0] + " de Tm " + str(n[1]) + " kg*cm]\n")
+            arq.write("[" + r[0] + " - Relevância: " + str(r[1]) + "]\n")
+            arq.write("Nota: " + changePoint(truncate(tNota, 2), ".", ",") + "\n")
+            arq.write("Total: " + str(changePoint(truncate(float(tNota) * float(r[1]), 2), ".", ",")) + "\n")
+            arq.write("\n")
+
+arq.close()
