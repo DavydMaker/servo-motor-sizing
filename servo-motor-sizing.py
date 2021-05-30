@@ -4,7 +4,7 @@
 """servo-motor-sizing.py: Script to assist in the dimensioning of servomotors in electrical design."""
 
 __author__ = "Davyd Maker"
-__version__ = "1.2"
+__version__ = "1.3"
 __email__ = "contato@davydmaker.com.br"
 
 def truncate(s, n):
@@ -22,22 +22,23 @@ for idxL, l in enumerate(confValores):
     l = l.strip()
     if l == "": pass
 
-    if "=" in l:
+    if l.count("=") > 1:
         l = l.split("|")
         listSprf.append(splitStrVal(l[0])[0])
         listRlv.append(splitStrVal("|".join(l[1:])))
-    else: listSv.append(list(map(float, [changePoint(tL, ",", ".") for tL in l.split("|")])))
+    else: listSv.append(list([l.split("=")[0], [float(changePoint(tL, ",", ".")) for tL in l.split("=")[1].split("|")]]))
+
 
 arq = open("./result.txt", "w+")
 for n, rList in zip(listSprf, listRlv):
     for idxS, s in enumerate(listSv):
         for idxR, r in enumerate(rList):
-            if r[0] == "Confiabilidade": tNota = s[3]
-            elif r[0] == "Tipo de Engrenagem": tNota = s[2]
-            elif r[0] == "Peso": tNota = -0.05 * s[1] + 10
-            elif r[0] == "Necessidade/Torque": tNota = float(truncate(n[1]/s[0], 2)) * 10
+            if r[0] == "Confiabilidade": tNota = s[1][3]
+            elif r[0] == "Tipo de Engrenagem": tNota = s[1][2]
+            elif r[0] == "Peso": tNota = -0.05 * s[1][1] + 10
+            elif r[0] == "Necessidade/Torque": tNota = float(truncate(n[1]/s[1][0], 2)) * 10
 
-            arq.write("[Servo Nº " + str(idxS+1) + " de Torque 4,8V (" + changePoint(s[0], ".", ",") + " N·cm) para " + n[0] + " de Tm " + str(n[1]) + " kg*cm]\n")
+            arq.write("[Servo " + s[0] + " de Torque (4,8V) " + changePoint(s[1][0], ".", ",") + " N·cm para " + n[0] + " de Tm " + str(n[1]) + " kg*cm]\n")
             arq.write("[" + r[0] + " - Relevância: " + str(r[1]) + "]\n")
             arq.write("Nota: " + changePoint(truncate(tNota, 2), ".", ",") + "\n")
             arq.write("Total: " + str(changePoint(truncate(float(tNota) * float(r[1]), 2), ".", ",")) + "\n")

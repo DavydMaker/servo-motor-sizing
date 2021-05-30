@@ -1,10 +1,11 @@
-Aileron=2,15|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
-Leme de Direção=1,5|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
+Aileron=4,62|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
+Leme de Direção=1|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
 Profundor=7,32|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
-Flaps=1,56|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
-4,8|8,5|10|1
-2,3|13|10|1
-5,2|58|10|1
-7,7|52,2|6,5|1
-2,35|13,3|10|1
-2,4|12,4|10|1
+Flaps=2,21|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
+Bequilha=5,0|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=100
+CORONA DS-843MG=4,8|8,5|10|8
+EFLITE EFLR7140=2,3|13|10|7
+FEETECH FS5115M=5,2|58|10|7
+HITEC HD-645MG=7,7|52,2|6,5|8
+Goteck GS-D9025MG=2,35|13,3|10|5
+EMAX es3302=2,4|12,4|10|6
