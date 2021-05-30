@@ -25,9 +25,10 @@ Aileron=2,15|Confiabilidade=70|Tipo de Engrenagem=80|Peso=90|Necessidade/Torque=
 ### Configurar novo servo motor
 Para adicionar um servo motor novo para realizar os cálculos em cima dele, adicione uma nova linha no final do arquivo seguindo o seguinte padrão:
 ```
-{t}|{p}|{e}|{c}
+{Nome do Servo}={t}|{p}|{e}|{c}
 ```
 
+Trocar `{Nome do Servo}` pelo nome do servo motor.\
 Trocar `{t}` pelo Torque Mínimo 4,8V (N·cm) do servo motor.\
 Trocar `{p}` pelo Peso (g) do servo motor.\
 Trocar `{e}` pela nota do Tipo de Engrenagem do servo motor.\
@@ -35,5 +36,5 @@ Trocar `{c}` pela nota de Confiabilidade do servo motor.
 
 Exemplo:
 ```
-4,8|8,5|10|8
+CORONA DS-843MG=4,8|8,5|10|8
 ```
