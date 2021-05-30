@@ -13,8 +13,8 @@ Para adicionar uma superfície nova e suas configurações de relevância, adici
 {Nome da Superfície}={Valor Torque Mínimo Requerido}|Confiabilidade={X}|Tipo de Engrenagem={X}|Peso={X}|Necessidade/Torque={X}
 ```
 
-Trocar `{Nome da Superfície}` pelo nome da nova superfície.
-Trocar `{Valor Torque Mínimo Requerido}` pelo torque mínimo requerido (kg*cm) desta superfície.
+Trocar `{Nome da Superfície}` pelo nome da nova superfície.\
+Trocar `{Valor Torque Mínimo Requerido}` pelo torque mínimo requerido (kg*cm) desta superfície.\
 Trocar  `{X}` pelos valores das relevâncias em questão para essa superfície.
 
 Exemlo:
@@ -28,9 +28,9 @@ Para adicionar um servo motor novo para realizar os cálculos em cima dele, adic
 {t}|{p}|{e}|{c}
 ```
 
-Trocar `{t}` pelo Torque Mínimo 4,8V (N·cm) do servo motor.
-Trocar `{p}` pelo Peso (g) do servo motor.
-Trocar `{e}` pela nota do Tipo de Engrenagem do servo motor.
+Trocar `{t}` pelo Torque Mínimo 4,8V (N·cm) do servo motor.\
+Trocar `{p}` pelo Peso (g) do servo motor.\
+Trocar `{e}` pela nota do Tipo de Engrenagem do servo motor.\
 Trocar `{c}` pela nota de Confiabilidade do servo motor.
 
 Exemplo:
