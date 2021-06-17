@@ -4,7 +4,7 @@
 """servo-motor-sizing.py: Script to assist in the dimensioning of servomotors in electrical design."""
 
 __author__ = "Davyd Maker"
-__version__ = "1.3"
+__version__ = "1.4"
 __email__ = "contato@davydmaker.com.br"
 
 def truncate(s, n):
@@ -38,8 +38,8 @@ for n, rList in zip(listSprf, listRlv):
             elif r[0] == "Peso": tNota = -0.05 * s[1][1] + 10
             elif r[0] == "Necessidade/Torque": tNota = float(truncate(n[1]/s[1][0], 2)) * 10
 
-            arq.write("[Servo " + s[0] + " de Torque (4,8V) " + changePoint(s[1][0], ".", ",") + " N·cm para " + n[0] + " de Tm " + str(n[1]) + " kg*cm]\n")
-            arq.write("[" + r[0] + " - Relevância: " + str(r[1]) + "]\n")
+            arq.write("[Servo " + s[0] + " de Torque (4,8V) " + changePoint(s[1][0], ".", ",") + " N·cm para " + n[0] + " de Tm " + changePoint(n[1], ".", ",") + " kg*cm]\n")
+            arq.write("[" + r[0] + " - Relevância: " + changePoint(r[1], ".", ",") + "]\n")
             arq.write("Nota: " + changePoint(truncate(tNota, 2), ".", ",") + "\n")
             arq.write("Total: " + str(changePoint(truncate(float(tNota) * float(r[1]), 2), ".", ",")) + "\n")
             arq.write("\n")
